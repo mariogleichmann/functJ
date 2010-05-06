@@ -30,5 +30,19 @@ public class on1<ARG1,RETURN> extends Function<RETURN> {
 			}
 		};
 	}
+	
+	public <Y> funct.on1<ARG1,Y> andThen( final funct.on1<RETURN,Y> next ){
+		
+		final funct.on1<ARG1,RETURN> thisFunct = this;
+		
+		return new funct.on1<ARG1,Y>(){
+			
+			void def(){
+				
+				RETURN retVal = thisFunct.call( _ );
+				yield( next.call( retVal ) );
+			}
+		};
+	}
 
 }

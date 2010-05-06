@@ -49,4 +49,17 @@ public class on2<ARG1,ARG2,RETURN> extends Function<RETURN> {
 		};
 	}
 	
+	public <Y> funct.on2<ARG1,ARG2,Y> andThen( final funct.on1<RETURN,Y> next ){
+		
+		final funct.on2<ARG1,ARG2,RETURN> thisFunct = this;
+		
+		return new funct.on2<ARG1,ARG2,Y>(){
+			
+			void def(){
+				
+				RETURN retVal = thisFunct.call( _1, _2 );
+				yield( next.call( retVal ) );
+			}
+		};
+	}
 }
