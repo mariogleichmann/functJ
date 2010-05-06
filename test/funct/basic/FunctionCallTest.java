@@ -35,4 +35,14 @@ public class FunctionCallTest extends TestCase {
 		
 		assertEquals( "hohoho", concat.call( 3, "ho" ) );
 	}
+	
+	
+    public void testRecursiveCall(){
+        
+        funct.on1<Integer,Integer> fib = new funct.on1<Integer,Integer>(){ void def(){ yield( _ == 1 ? 1 : call( _ - 1 ) * _  ); } };
+
+        assertEquals( Integer.valueOf( 120 ) , fib.call( 5 ) );
+    }
 }
+
+

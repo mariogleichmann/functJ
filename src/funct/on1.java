@@ -7,12 +7,17 @@ public class on1<ARG1,RETURN> extends Function<RETURN> {
 	
 	public RETURN call( ARG1 arg ){
 		
+		ARG1 tmp = _;
+		
 		_ = arg;
 		
 		eval();
 		
+		_ = tmp;
+		
 		return retVal;
 	}
+	
 	
 	public funct.on0<RETURN> apply( final ARG1 arg1 ){
 		

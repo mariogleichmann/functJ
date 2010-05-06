@@ -14,6 +14,10 @@ public class Collections {
 		return new CollectionExt<T>( collection );
 	}
 	
+	public static <T> ListExt<T> on( List<T> list ){
+		return new ListExt<T>( list );
+	}
+	
 	public static <K,V> MapExt<K,V> on( Map<K,V> map ){
 		return new MapExt<K,V>( map );
 	}

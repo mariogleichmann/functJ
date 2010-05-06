@@ -8,9 +8,18 @@ public class on2<ARG1,ARG2,RETURN> extends Function<RETURN> {
 	
 	
 	public RETURN call( ARG1 arg1, ARG2 arg2 ){
+		
+		ARG1 tmp1 = _1;
+		ARG2 tmp2 = _2;
+		
 		_1 = arg1;
 		_2 = arg2;
+		
 		eval();
+		
+		_1 = tmp1;
+		_2 = tmp2;
+		
 		return retVal;
 	}
 

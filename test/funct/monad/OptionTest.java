@@ -44,4 +44,45 @@ public class OptionTest extends TestCase {
 		
 		assertEquals( "unknown", tomsLocation );
 	}
+	
+	
+	public void testMapSteppingFunction(){
+		
+		funct.on1<String,String> whereIs = new funct.on1<String,String>(){
+			
+			void def(){ 
+				
+				yield( on( developers ).get( _ )
+									   .map( new funct.on1<String,String>(){ void def(){ yield( projects.get( _ ) ); } } )
+									   .map( new funct.on1<String,String>(){ void def(){ yield( customers.get( _ ) ); } } )
+									   .getOrElse( "unknown" )	); 
+			} 
+		};
+											   
+		
+		assertEquals( "Frankfurt", whereIs.call( "Jim" ) );
+		
+		assertEquals( "unknown", whereIs.call( "Jan" ) );
+		
+		assertEquals( "unknown", whereIs.call( "Tom" ) );
+	}
+	
+	
+	public void testOptionWithFor(){
+		
+		String location = "unknown";
+		
+		for( String project : on( developers ).get( "Jim") ){
+			
+			for( String customer : on( projects ).get( project ) ){
+				
+				for( String city : on( customers ).get( customer ) ){
+					
+					location = city;
+				}
+			}
+		}
+		
+		assertEquals( "Frankfurt", location );
+	}
 }

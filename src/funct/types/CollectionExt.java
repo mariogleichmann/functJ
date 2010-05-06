@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CollectionExt<T> {
 
-	private Collection<T> collection = null;
+	protected Collection<T> collection = null;
 	
 	
 	public CollectionExt(Collection<T> collection ) {
@@ -21,7 +21,8 @@ public class CollectionExt<T> {
 		for( T elem : collection ) mapped.add( mapper.call( elem ) );
 		
 		return new CollectionExt<V>( mapped );
-	}
+	}	
+	
 	
 	public CollectionExt<T> filter( funct.on1<T,Boolean> filter ){
 		
